@@ -16,6 +16,10 @@ class Member < ApplicationRecord
         Member.where(id: fs)
     end
 
+    def non_friends
+        Member.where.not(id: friends.ids)
+    end
+
     def friend_count
         friends.count
     end

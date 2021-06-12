@@ -23,7 +23,7 @@ export default function NewMember(props) {
   };
 
   return (
-    <>
+    <div className="p-3 bg-light border rounded-3">
       <h3>New Members</h3>
         <div className="mb-1">
           <label className="form-label">First Name</label>
@@ -39,6 +39,6 @@ export default function NewMember(props) {
         </div>
         
         <button className="btn btn-primary" onClick={createMember}>Add Member</button>
-    </>
+    </div>
   );
 } 

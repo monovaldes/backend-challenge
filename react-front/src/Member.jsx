@@ -29,13 +29,14 @@ export default function Member() {
   }, [])
 
   const showResults = () => {
-    if(results === null || results === []) return (<span>No results found</span>);
+    if(results === null ) return (null);
+    if(results === []) return (<span>No results found</span>);
     return(
       <table>
         <thead>
           <tr>
-            <td>Header</td>
-            <td>Route</td>
+            <th>Header</th>
+            <th>Route</th>
           </tr>
         </thead>
         <tbody>
@@ -50,7 +51,6 @@ export default function Member() {
         </tbody>
       </table>
     );
-    
   }
 
   const searchAuthor = () => {
@@ -99,15 +99,22 @@ export default function Member() {
     )
   }
 
-  if(member === null) {return(null)}
+  const showHeaders = () => {
+    const hs = member.headers.map((h) => h.header)
+    return(
+      <>
+        <h3>Headers</h3>
+        <table>
+          <tbody>
+            {hs.map((f) => (<tr><td>{f}</td></tr>))}
+          </tbody>
+        </table>
+      </>
+    )
+  }
 
-  return (
+  const showQuery = () => (
     <>
-      <h3>{member.first_name} {member.last_name}</h3>
-      {member.url} ({member.url_slug})
-
-      {showFriends()}
-
       <h3>Author Query</h3>
       <div className="mb-1">
           <input type="text" className="form-control" onChange={({target}) => setQuery(target.value)} />
@@ -115,5 +122,27 @@ export default function Member() {
       <button className="btn btn-primary" onClick={searchAuthor}>Search</button>
       {showResults()}
     </>
+  );
+
+  if(member === null) {return(null)}
+
+  return (
+    <div className="container py-3">
+      <div className="row justify-content-md-center">
+        <div className="col col-md-8">
+          <h3>{member.first_name} {member.last_name}</h3>
+          {member.url} ({member.url_slug})
+          <div className="p-3 mb-3 bg-light border rounded-3">
+            {showHeaders()}
+          </div>
+          <div className="p-3 mb-3 bg-light border rounded-3">
+            {showFriends()}
+          </div>
+          <div className="p-3 bg-light border rounded-3">
+            {showQuery()}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 } 

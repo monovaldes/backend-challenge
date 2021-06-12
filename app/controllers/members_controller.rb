@@ -10,7 +10,7 @@ class MembersController < ApplicationController
 
   # GET /members/1
   def show
-    render json: @member.to_json(:except => ['created_at', 'updated_at'], :methods => ['friends', 'non_friends'])
+    render json: @member.to_json(:include => ['headers'], :except => ['created_at', 'updated_at'], :methods => ['friends', 'non_friends'])
   end
 
   # POST /members

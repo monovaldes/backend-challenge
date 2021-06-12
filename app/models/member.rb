@@ -1,6 +1,7 @@
 class Member < ApplicationRecord
     include HeaderParser
     before_create :set_slug
+    has_many :headers
 
     def set_slug
         loop do
@@ -25,10 +26,10 @@ class Member < ApplicationRecord
     end
 
     def find_expert(topic)
-        headers = Header.where("header LIKE '%#{topic}%'").where.not(member: self).where.not(member: self.friends)
-        return nil unless headers.any?
+        hs = Header.where("header LIKE '%#{topic}%'").where.not(member: self).where.not(member: self.friends)
+        return nil unless hs.any?
 
-        headers.map do |header|
+        hs.map do |header|
             route = find_friend(header.member, [])
             if route
                 route.shift

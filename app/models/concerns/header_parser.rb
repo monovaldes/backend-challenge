@@ -20,7 +20,7 @@ module HeaderParser
 
         response = Faraday.get self.url
         doc = Nokogiri::HTML::DocumentFragment.parse(response.body)
-        doc.css('h1, h2, h3, h4').each do |text|
+        doc.css('h1, h2, h3').each do |text|
             Header.create(member: self, header: text.text)
         end
     rescue

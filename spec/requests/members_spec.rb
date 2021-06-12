@@ -50,6 +50,7 @@ describe 'Members', type: :request do
 
   describe 'viewing a member' do
     context 'when member exists' do
+      Member.create(first_name: 'test', last_name: 'member', url: 'google.com')
       subject { get "/members/#{Member.first.id}", headers: headers }
 
       it 'returns the correct status code' do

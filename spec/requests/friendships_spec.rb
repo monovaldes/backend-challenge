@@ -8,11 +8,13 @@ describe 'Friendships', type: :request do
     subject { post '/friendships', params: params.to_json, headers: headers }
 
     context 'with valid params' do
+      m = Member.create(first_name: "testM", last_name: "memberM", url: "Mgoogle.com")
+      f = Member.create(first_name: "testF", last_name: "memberF", url: "Fgoogle.com")
       let(:params) do
         {
           friendship: {
-            member_id: 1,
-            friend_id: 2,
+            member_id: m.id,
+            friend_id: f.id,
           }
         }
       end

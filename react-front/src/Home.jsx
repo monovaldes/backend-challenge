@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useIsAuthenticated, useAuthHeader } from 'react-auth-kit'
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import axios from 'axios'
 import NewMember from './NewMember.jsx'
 
@@ -8,6 +8,7 @@ export default function Home() {
   const [members, setMembers] = useState([]);
   const isAuthenticated = useIsAuthenticated();
   const authHeader = useAuthHeader();
+  const history = useHistory();
 
   const updateMembers = () => {
     axios.get(`http://localhost:3000/members`, {headers: { 'Authorization': authHeader()}})
@@ -35,7 +36,7 @@ export default function Home() {
       </thead>
       <tbody>
         {members.map(m => (
-          <tr key={m.id}>
+          <tr key={m.id} onClick={() => history.push(`${m.id}`)}>
             <td>{m.first_name} {m.last_name}</td>
             <td>{m.url_slug}</td>
             <td>{m.friend_count}</td>

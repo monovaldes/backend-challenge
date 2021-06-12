@@ -26,10 +26,11 @@ class Member < ApplicationRecord
 
         headers.map do |header|
             route = find_friend(header.member, [])
-            return nil unless route
-            
-            return {route: route, header: header}
-        end
+            if route
+                route.shift
+                {route: route.append(header.member), header: header} 
+            end
+        end.compact
     end
 
     def is_friend?(member)

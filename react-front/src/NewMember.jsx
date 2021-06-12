@@ -10,7 +10,6 @@ export default function NewMember(props) {
 
   const createMember = () => {
     const data = { member: { first_name: firstname, last_name: lastname, url: url} };
-    console.log(data);
     axios.post(`http://localhost:3000/members`, data , {
       headers: { Authorization: authHeader() },
     })

@@ -1,6 +1,7 @@
 import { AuthProvider } from 'react-auth-kit'
 import Home from './Home.jsx'
 import Login from './Login.jsx'
+import Member from './Member.jsx'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => (
@@ -17,6 +18,9 @@ const App = () => (
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/:id">
+            <Member />
           </Route>
         </Switch>
       </Router>

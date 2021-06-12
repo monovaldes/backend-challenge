@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :update, :destroy]
+  before_action :set_member, only: [:show, :update, :destroy, :search]
 
   # GET /members
   def index
@@ -36,6 +36,11 @@ class MembersController < ApplicationController
   # DELETE /members/1
   def destroy
     @member.destroy
+  end
+
+  # GET /members/1/search
+  def search
+    render json: @member.find_expert(params['query'])
   end
 
   private

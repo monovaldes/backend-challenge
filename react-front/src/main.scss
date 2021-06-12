@@ -1,5 +1,9 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+.container {
+    max-width: 960px;
+}
+
 .loginpage {
     display: flex;
     align-items: center;

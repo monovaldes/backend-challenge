@@ -5,7 +5,7 @@ class MembersController < ApplicationController
   def index
     @members = Member.all
 
-    render json: @members
+    render json: @members.to_json(:except => ['created_at', 'updated_at'], :methods => ['friend_count'])
   end
 
   # GET /members/1

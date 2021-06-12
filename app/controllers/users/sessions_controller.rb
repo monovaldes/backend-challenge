@@ -6,11 +6,12 @@ class Users::SessionsController < Devise::SessionsController
     private
 
     def respond_with(resource, _opts = {})
-        if resource.persisted?
-            render json: { message: 'You are logged in.' }, status: :ok
-        else
-            render json: { message: 'Login Failed.' }, status: :unauthorized
-        end
+    if resource.persisted?
+        token = request.env['warden-jwt_auth.token']
+        render json: { message: 'You are logged in.', token: token, expiresIn: 3600/60 }, status: :ok
+    else
+        render json: { message: 'Login Failed.' }, status: :unauthorized
+    end
     end
 
     def respond_to_on_destroy

@@ -1,6 +1,6 @@
 import { AuthProvider } from 'react-auth-kit'
-import Home from './Home'
-import Login from './Login'
+import Home from './Home.jsx'
+import Login from './Login.jsx'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => (

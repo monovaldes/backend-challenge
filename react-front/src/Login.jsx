@@ -13,10 +13,9 @@ const Login = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        axios.post(`http://localhost:3000/users${FormType == 'login' ? '/sign_in' : ''}`, {user: formData})
+        axios.post(`http://localhost:3000/users${FormType === 'login' ? '/sign_in' : ''}`, {user: formData})
             .then((res)=>{
                 if(res.status === 200){
-                    window.response = res;
                     if(signIn({
                             token: res.data.token,
                             expiresIn: res.data.expiresIn,

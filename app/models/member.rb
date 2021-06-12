@@ -16,6 +16,10 @@ class Member < ApplicationRecord
         Member.where(id: fs)
     end
 
+    def friend_count
+        friends.count
+    end
+
     def find_expert(topic)
         headers = Header.where("header LIKE '%#{topic}%'").where.not(member: self).where.not(member: self.friends)
         return nil unless headers.any?

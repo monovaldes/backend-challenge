@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210612151530) do
+ActiveRecord::Schema.define(version: 20210612155208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20210612151530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_friendships_on_member_id"
+  end
+
+  create_table "headers", force: :cascade do |t|
+    t.bigint "member_id"
+    t.text "header"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_headers_on_member_id"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
@@ -51,4 +59,5 @@ ActiveRecord::Schema.define(version: 20210612151530) do
   end
 
   add_foreign_key "friendships", "members"
+  add_foreign_key "headers", "members"
 end

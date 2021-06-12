@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "short_url/:slug" => 'short_url#index'
   resources :friendships
   resources :members
   # Devise routes for authentication
